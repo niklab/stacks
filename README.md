@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Starter Cordova Application
 ==========================
 
@@ -15,3 +16,9 @@ $ open -a Xcode platforms/ios
 ```
 
 That last command opens the Xcode project that cordova has built
+=======
+stacks
+======
+
+Stacks HTML5 mobile application
+>>>>>>> e916008c5304d65cf0f7bf1abb56c29a287aa732
