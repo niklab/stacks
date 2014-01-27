@@ -28,6 +28,9 @@ This will install the ios platform cordova plugins.
 ```bash
 $ cd wwww
 $ bower install
+// Testing components for Angularjs
+$ bower install angular-mocks
+$ bower install angular-scenario
 ```
 
 
@@ -36,8 +39,11 @@ $ bower install
 Make sure you have grunt installed, then run
 
 ```bash
-$ npm install 
-$ grunt
+$ npm install
+$ npm install -g grunt-cli
+$ npm install -g karma
+$ npm install grunt-shell grunt-karma grunt-contrib-watch --save-dev
+$ grunt devmod
 ```
 
 On a new terminal window
@@ -46,7 +52,7 @@ On a new terminal window
 $ cordova serve ios
 ```
 
-This launches the address (http://localhost:8000/ios/www/) with the application loaded for preview. 
+This launches the address (http://localhost:8000/ios/www/) with the application loaded for preview.
 
 ### Building the application on Xcode
 
