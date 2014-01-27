@@ -1,0 +1,11 @@
+<h3>Search results</h3>
+<ul>
+  <li ng-repeat="book in books">
+     <a href="#/book?isbn={{book.isbn}}">
+        <img ng-src="{{book.image}}" alt="">
+        <strong>{{book.title}}</strong>
+        <em>by {{book.author}}</em>
+        <em>ISBN {{book.isbn}}</em>
+     </a>
+  </li>    
+</ul>

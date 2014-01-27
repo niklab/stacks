@@ -3,43 +3,105 @@
 // the 2nd parameter is an array of 'requires'
 // 'ladders.services' is found in services.js
 // 'ladders.controllers' is found in controllers.js
-angular.module('ladders', ['ui.router','ladders.services', 'ladders.controllers'])
 
+document.addEventListener('deviceready', function(){
 
-.config(function($stateProvider, $urlRouterProvider) {
+  angular.module('ladders', [
+      'ngRoute',
+      'ladders.services',
+      'ladders.controllers'
+    ]
+  )
+  .config(function($routeProvider, databaseProvider) {
 
-  // Use AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
-  $stateProvider
+    // Use AngularUI Router which uses the concept of states
+    // Learn more here: https://github.com/angular-ui/ui-router
+    // Set up the various states which the app can be in.
+    // Each state's controller can be found in controllers.js
+    $routeProvider
 
-    .state('home', {
-      url: "/",
-      templateUrl: "templates/home.html"
-    })
-    .state('book', {
-      url: "/book",
-      templateUrl: "templates/book.html"
-    })
-      .state('book.add', {
-        url: "/book/add",
-        templateUrl: "templates/book.add.html"
+      .when('/home', {
+        templateUrl: 'templates/home.html'
       })
-      .state('book.scan', {
-        url: "/book/scan",
-        templateUrl: "templates/book.scan.html"
+      .when("/add",{
+        templateUrl: "templates/add.html",
+        controller: "AddBookController"
       })
-      .state('book.search', {
-        url: "/book/search",
-        templateUrl: "templates/book.search.html"
+      .when("/addmanually",{
+        templateUrl: "templates/add.manually.html",
+        controller: "AddBookController"
+      })
+      .when("/scan",{
+        templateUrl: "templates/scan.html"
+      })
+      .when("/add/options",{
+        templateUrl: "templates/add.options.html"
+      })
+      .when("/book/",{
+        templateUrl: "templates/book.html",
+        controller: "BookController"
+      })
+      .when("/book/search",{
+        templateUrl: "templates/search.html",
+        controller: "BookController"
+      })
+      .when("/search/results",{
+        templateUrl: "templates/search.results.html",
+        controller: "SearchResults"
+      })
+      .when("/search/noresults",{
+        templateUrl: "templates/search.no_results.html",
+        controller: "BookController"
+      })
+      .when("/library",{
+        templateUrl: "templates/library.html",
+        controller: "LibraryController"
+      })
+      .otherwise({
+        redirectTo: '/home'
       });
 
+      databaseProvider.connect('ladders');
 
 
+  });
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/home');
-
+  angular.bootstrap(document, ['ladders']);
 });
+
+
+
+  
+function createtables(tx){
+
+  // @todo: remove this line in production
+  tx.executeSql('DROP TABLE IF EXISTS books'); // only for debugging purposes, setup a fresh table on each app launch
+  
+  tx.executeSql(
+    'CREATE TABLE IF NOT EXISTS books'+
+    '('+
+      'id INTEGER PRIMARY KEY AUTOINCREMENT,'+
+      'isbn TEXT,'+
+      'title TEXT,'+
+      'description TEXT,'+
+      'image_path TEXT,'+
+      'author TEXT,'+
+      'publisher TEXT,'+
+      'year TEXT,'+
+      'pages TEXT'+ 
+    ')'
+  );
+
+}
+
+// tansaction error callback
+function errorCB(){
+  console.log('error processing SQL: ' +err);
+}
+
+// Transaction success callback
+function successCB() {
+  console.log("success!");
+}
+
 
