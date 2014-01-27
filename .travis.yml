@@ -10,4 +10,4 @@ before_script:
   - rm -rf node_modules/karma
 
 script:
-  - grunt
+  - grunt test
