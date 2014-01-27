@@ -1,5 +1,13 @@
 language: node_js
 node_js:
-  - '0.10'
+  - 0.8
+  - 0.10
 before_script:
-  - 'npm install -g grunt-cli'
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - npm install -g grunt-cli
+  - npm install --quiet -g karma
+  - rm -rf node_modules/karma
+
+script:
+  - grunt

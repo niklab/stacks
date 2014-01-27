@@ -1,7 +1,8 @@
 {
   "name": "my-cordova-book-app",
   "version": "0.1.0",
-   "scripts": {
+  "private": true,
+  "scripts": {
       "test": "grunt test"
   },
   "devDependencies": {
