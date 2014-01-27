@@ -43,7 +43,7 @@ $ npm install
 $ npm install -g grunt-cli
 $ npm install -g karma
 $ npm install grunt-shell grunt-karma grunt-contrib-watch --save-dev
-$ grunt devmod
+$ grunt devmode
 ```
 
 On a new terminal window
@@ -59,3 +59,6 @@ This launches the address (http://localhost:8000/ios/www/) with the application 
 ```bash
 $ open -a Xcode platforms/ios
 ```
+
+### Travis CI status
+[![Build Status](https://secure.travis-ci.org/nilamprop/stacks.png?branch=master)](https://travis-ci.org/nilamprop/stacks/)
