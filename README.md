@@ -1,4 +1,4 @@
-Starter Cordova Application
+Stacks - HTML5 / Angularjs / Cordova IOS Mobile App
 ==========================
 
 
